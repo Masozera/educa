@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}My courses{% endblock %}
+
+{% block content %}
+ <h1>My courses</h1>
+
+ <div class="module">
+ {% for course in object_list %}
+ <div class="course-info">
+ <h3>{{ course.title }}</h3>
+ <p><a href="{% url "student_course_detail" course.id %}">
+ Access contents</a></p>
+ </div>
+ {% empty %}
+ <p>
+ You are not enrolled in any courses yet.
+ <a href="{% url "course_list" %}">Browse courses</a>
+ to enroll in a course.
+ </p>
+ {% endfor %}
+ </div>
+{% endblock %}
+
+{% comment %} 
+This template displays the courses that the student is enrolled on. Remember that
+when a new student successfully registers with the platform, they will be redirected
+to the student_course_list URL. Let's also redirect students to this URL when
+they log in to the platform 
+{% endcomment %}

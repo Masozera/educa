@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+ {% if object %}
+ Edit content "{{ object.title }}"
+ {% else %}
+ Add new content
+ {% endif %}
+{% endblock %}
+{% block content %}
+ <h1>
+  {% if object %}
+ Edit content "{{ object.title }}"
+ {% else %}
+ Add new content
+ {% endif %}
+ </h1>
+
+ <div class="module">
+ <h2>Course info</h2>
+ <form action="" method="post" enctype="multipart/form-data">
+ {{ form.as_p }}
+ {% csrf_token %}
+ <p><input type="submit" value="Save content"></p>
+ </form>
+ </div>
+
+{% endblock %}
+
+
+{% comment %}
+ This is the template for the ContentCreateUpdateView view. In this template, you
+check whether an object variable is in the context. If object exists in the context,
+you are updating an existing object. Otherwise, you are creating a new object.
+You include enctype="multipart/form-data" in the <form> HTML element
+because the form contains a file upload for the File and Image content models.
+Run the development server, open http://127.0.0.1:8000/course/mine/, click
+Edit modules for an existing course, and create a module. Open the Python shell
+with the command python manage.py shell and obtain the ID of the most recently
+created module, as follows: 
+{% endcomment %}
